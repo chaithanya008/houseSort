@@ -1,0 +1,22 @@
+<h3>A list of all the houses sorted according to their distance to your sisters home in Eberswalder Straße 55. Start with the house
+        with the lowest distance:</h3>
+<app-houses-table [houses]="distanceSorted"></app-houses-table> 
+
+<h3>A list of houses which have more then 5 rooms. Start with the lowest number of rooms:</h3>
+<app-houses-table [houses]="moreThanFiveList"></app-houses-table> 
+
+<h3>A list of houses that you do not have all the data for. Sort them by the street-name:</h3>
+<app-houses-table [houses]="streetNameList"></app-houses-table> 
+
+<div *ngIf="closestHomeToSister!=null">
+    <h3>House that is closest to your sisters home, but only if the house has at least 10 rooms and does not cost more than
+        5.000.000 €:</h3>
+    <div>Address: {{closestHomeToSister.street}}</div>
+    <div>Latitude: {{closestHomeToSister.coords.lat}}</div>
+    <div>Longitude: {{closestHomeToSister.coords.lon}}</div>
+    <div>Rooms: {{closestHomeToSister.params.rooms}}</div>
+    <div>Value: {{closestHomeToSister.params.value}} €</div>
+</div>
+
+<br/>
+

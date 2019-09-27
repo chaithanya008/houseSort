@@ -1,0 +1,13 @@
+{
+    "houses": [{
+        "coords": {
+            "lat": double,
+            "lon": double
+        },
+        "params": {
+            "rooms": int,
+            "value": int
+        },
+        "street": string
+    }]
+}

@@ -1,0 +1,28 @@
+<mat-table [dataSource]="houses" class="houses-table">
+    <ng-container matColumnDef="latitude">
+      <mat-header-cell *matHeaderCellDef> Latitude </mat-header-cell>
+      <mat-cell class="animation"  *matCellDef="let element"> {{element.coords.lat}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="longitude">
+      <mat-header-cell *matHeaderCellDef> Longitude </mat-header-cell>
+      <mat-cell class="animation"  *matCellDef="let element"> {{element.coords.lon}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="rooms">
+      <mat-header-cell *matHeaderCellDef> Rooms </mat-header-cell>
+      <mat-cell class="animation"  *matCellDef="let element"> {{element.params!=null ? element.params.rooms : ''}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="value">
+      <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+      <mat-cell class="animation"  *matCellDef="let element"> {{element.params !=null ? element.params.value + ' €': ''}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="street">
+      <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+      <mat-cell class="animation" *matCellDef="let element"> {{element.street}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="distanceFromHome">
+      <mat-header-cell *matHeaderCellDef> Distance from home </mat-header-cell>
+      <mat-cell class="animation" *matCellDef="let element"> {{element.distanceFromHome / 1000| number:'.2'}} km</mat-cell>
+    </ng-container>
+    <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
