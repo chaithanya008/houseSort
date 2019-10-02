@@ -10,12 +10,12 @@ import { HouseQuery } from './models/house-query';
 })
 
 export class AppComponent implements OnInit {
-  title = 'BerlinUI';
-  public hdata: HouseQuery; 
- 
+  title = 'House Sort';
+  public hdata: HouseQuery;
+
   public isDataLoaded: boolean = false;
 
-  public get dataLoaded(): boolean{
+  public get dataLoaded(): boolean {
     return this.isDataLoaded;
   }
 

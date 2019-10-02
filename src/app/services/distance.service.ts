@@ -27,4 +27,5 @@ export class DistanceService {
       result = (3958.8 * METRES_IN_MILE) * Math.acos(Math.sin(lt1) * Math.sin(lt2) + Math.cos(lt1) * Math.cos(lt2) * Math.cos(lg2 - lg1));
     }
     return result; }
+
 }
