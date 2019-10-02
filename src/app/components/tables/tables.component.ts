@@ -11,9 +11,9 @@ import { QueryHouseData } from '../../models/query-house-data';
 })
 export class TablesComponent implements OnInit {
 
-  public distanceSorted:  QueryHouseData[];
-  public moreThanFiveList:  QueryHouseData[];
-  public streetNameList:  QueryHouseData[];
+  public distanceSorted: QueryHouseData[];
+  public moreThanFiveList: QueryHouseData[];
+  public streetNameList: QueryHouseData[];
   public closestHomeToSister: QueryHouseData;
 
   displayedColumns = ["latitude", "longitude", "rooms", "value", "street", "distanceFromHome"];
@@ -40,32 +40,31 @@ export class TablesComponent implements OnInit {
 
     // sort by distance. sort function understands which value is bigger by sign of the substraction result between two elements of the array.
     this.distanceSorted = this.houses
-    .sort((a,b)=>a.distanceFromHome - b.distanceFromHome);
+      .sort((a, b) => a.distanceFromHome - b.distanceFromHome);
 
     // a list of houses which have more then 5 rooms. Start with the lowest number of rooms.
-    this.moreThanFiveList =  this.houses
-      .filter(x=>x.params !=null && x.params.rooms > 5)
-      .sort((a,b)=>a.params.rooms - b.params.rooms);
+    this.moreThanFiveList = this.houses
+      .filter(x => x.params != null && x.params.rooms > 5)
+      .sort((a, b) => a.params.rooms - b.params.rooms);
 
     //a list of houses that you do not have all the data for. Sort them by the street-name.
     this.streetNameList = this.houses
-      .filter(x=> (x.params == null || (x.params.rooms == null && x.params.value == null))
-      && (x.coords == null || (x.coords.lat == null && x.coords.lon == null)) )
-      .sort((a, b) => a.street.localeCompare(b.street)); 
-    
+      .filter(x => (x.params == null || (x.params.rooms == null && x.params.value == null))
+        && (x.coords == null || (x.coords.lat == null && x.coords.lon == null)))
+      .sort((a, b) => a.street.localeCompare(b.street));
+
     //  house that is closest to your sisters home, but only if the house has at least 10 rooms and does not cost more than 5.000.000 €.
     var appropriateHouses = this.houses
-    .filter(x=>x.params !=null && 
-      x.params.rooms!=null && 
-      x.params.value!=null && 
-      x.params.rooms >= 10 && 
-      x.params.value<=this.maxHouseValueForMe)
-    .sort((a,b)=>a.distanceFromHome - b.distanceFromHome);
+      .filter(x => x.params != null &&
+        x.params.rooms != null &&
+        x.params.value != null &&
+        x.params.rooms >= 10 &&
+        x.params.value <= this.maxHouseValueForMe)
+      .sort((a, b) => a.distanceFromHome - b.distanceFromHome);
 
-    if (appropriateHouses!=null && appropriateHouses.length>1)
-      {
-        // taking the home with index 1 because the home with index 0 is sister's home (distance = 0)
-        this.closestHomeToSister = appropriateHouses[1]
-      }
+    if (appropriateHouses != null && appropriateHouses.length > 1) {
+      // taking the home with index 1 because the home with index 0 is sister's home (distance = 0)
+      this.closestHomeToSister = appropriateHouses[1]
+    }
   }
 }
